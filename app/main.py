@@ -12,7 +12,7 @@ def main():
         os.mkdir(".git/refs")
         with open(".git/HEAD", "w") as f:
             f.write("ref: refs/heads/main\n")
-        print("Initialized git directory", end="")
+        print("Initialized git directory")
     elif command == "cat-file":
         plummbing_flag = sys.argv[2]
         blob_id = sys.argv[3]
@@ -35,7 +35,11 @@ def main():
                 if v >= 0 and v < 26:
                     a += letter
             ans[-1] = a
-            print(" ".join(ans), end="")
+            ans2 = ""
+            for a in ans:
+                ans2 += a
+                ans2 += " "
+            print(ans2, end="")
     
     else:
         raise RuntimeError(f"Unknown command #{command}")
