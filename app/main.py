@@ -3,7 +3,7 @@ import os
 import zlib
 
 def main():
-    print("Logs from your program will appear here!")
+    # print("Logs from your program will appear here!")
     
     command = sys.argv[1]
     if command == "init":
@@ -35,11 +35,7 @@ def main():
                 if v >= 0 and v < 26:
                     a += letter
             ans[-1] = a
-            ans2 = ""
-            for a in ans:
-                ans2 += a
-                ans2 += " "
-            print(ans2, end="")
+            print(" ".join(ans), end="")
     
     else:
         raise RuntimeError(f"Unknown command #{command}")
