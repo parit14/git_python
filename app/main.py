@@ -22,9 +22,10 @@ def main():
         with open(path, "rb") as f:
             decompress_blob = str(zlib.decompress(f.read()))
             vals = decompress_blob.split(" ")
+            print(vals)
             contents = vals[-1]
             contents = contents.split("\0")
-            print(contents)
+            print(contents[0])
     else:
         raise RuntimeError(f"Unknown command #{command}")
 
