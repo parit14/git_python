@@ -16,8 +16,9 @@ def main():
     elif command == "cat-file":
         plummbing_flag = sys.argv[2]
         blob_id = sys.argv[3]
-        blob_dir =  "".join(blob_id[:2])
-        path = ".git/objects/" + blob_dir + "".join(blob_id[2:])
+        blob_dir = "".join(blob_id[:2])
+        # print(blob_dir, )
+        path = ".git/objects/" + blob_dir + "/" + "".join(blob_id[2:])
         blob_object = open(path)
         decompress_blob = str(zlib.decompress(blob_object))
         _, content = decompress_blob.split(" ")
