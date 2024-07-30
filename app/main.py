@@ -24,7 +24,7 @@ def main():
             vals = decompress_blob.split(" ")
             contents = vals[-1]
             contents = contents.split("\0")
-            print(contents[1])
+            print(contents)
     else:
         raise RuntimeError(f"Unknown command #{command}")
 
