@@ -35,7 +35,7 @@ def main():
                 if v >= 0 and v < 26:
                     a += letter
             ans[-1] = a
-            print(" ".join(ans), end="")
+            print(" ".join(ans), begin="", end="")
     
     else:
         raise RuntimeError(f"Unknown command #{command}")
