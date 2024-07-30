@@ -29,8 +29,12 @@ def main():
                     ans.append(vs[-1])
                     ans += vals[idx+1:]
                     break
-            ans[-1].strip("\'")
-            print(ans[-1])
+            a = ""
+            for letter in ans[-1]:
+                v = ord(letter) - 97 
+                if v >= 0 and v < 26:
+                    a += letter
+            ans[-1] = a
             print(" ".join(ans))
     
     else:
