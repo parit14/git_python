@@ -29,6 +29,7 @@ def main():
                     ans.append(vs[-1])
                     ans += vals[idx+1:]
                     break
+            ans[-1].trim("'")
             print(" ".join(ans))
     
     else:
