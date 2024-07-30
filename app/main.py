@@ -1,9 +1,8 @@
 import sys
 import os
-
+import zlib
 
 def main():
-    # You can use print statements as follows for debugging, they'll be visible when running tests.
     print("Logs from your program will appear here!")
     
     command = sys.argv[1]
@@ -14,6 +13,15 @@ def main():
         with open(".git/HEAD", "w") as f:
             f.write("ref: refs/heads/main\n")
         print("Initialized git directory")
+    elif command == "cat-file":
+        plummbing_flag = sys.argv[2]
+        blob_id = sys.argv[3]
+        path = ".git/objects/" + blob_id
+        blob_object = open(path)
+        decompress_blob = str(zlib.decompress(blob_object))
+        _, content = decompress_blob.split(" ")
+        contents = content.split("\0")
+        print(contents[1])
     else:
         raise RuntimeError(f"Unknown command #{command}")
 
