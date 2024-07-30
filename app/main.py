@@ -21,7 +21,8 @@ def main():
         blob_object = open(path)
         with open(path, "rb") as f:
             decompress_blob = str(zlib.decompress(f.read()))
-            _, content = decompress_blob.split(" ")
+            vals = decompress_blob.split(" ")
+            contents = vals[-1]
             contents = content.split("\0")
             print(contents[1])
     else:
