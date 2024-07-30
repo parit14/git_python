@@ -30,6 +30,7 @@ def main():
                     ans += vals[idx+1:]
                     break
             ans[-1].strip("\'")
+            print(ans[-1])
             print(" ".join(ans))
     
     else:
