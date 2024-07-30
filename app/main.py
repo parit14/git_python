@@ -17,13 +17,13 @@ def main():
         plummbing_flag = sys.argv[2]
         blob_id = sys.argv[3]
         blob_dir = "".join(blob_id[:2])
-        # print(blob_dir, )
         path = ".git/objects/" + blob_dir + "/" + "".join(blob_id[2:])
         blob_object = open(path)
-        decompress_blob = str(zlib.decompress(blob_object))
-        _, content = decompress_blob.split(" ")
-        contents = content.split("\0")
-        print(contents[1])
+        with open(path, "r") as f:
+            decompress_blob = str(zlib.decompress(f.read()))
+            _, content = decompress_blob.split(" ")
+            contents = content.split("\0")
+            print(contents[1])
     else:
         raise RuntimeError(f"Unknown command #{command}")
 
