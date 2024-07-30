@@ -21,8 +21,16 @@ def main():
         blob_object = open(path)
         with open(path, "rb") as f:
             decompress_blob = str(zlib.decompress(f.read()))
-            vals = decompress_blob.split("\0")
-            print(vals)
+            vals = decompress_blob.split(" ")
+            ans = []
+            for idx, val in enumerate(vals):
+                if "\\x00" in val:
+                    vs = val.split("\\x00")
+                    ans.append(vs[-1])
+                    ans += vals[idx+1:]
+                    break
+            print(" ".join(ans))
+    
     else:
         raise RuntimeError(f"Unknown command #{command}")
 
