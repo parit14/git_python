@@ -19,7 +19,7 @@ def main():
         blob_dir = "".join(blob_id[:2])
         path = ".git/objects/" + blob_dir + "/" + "".join(blob_id[2:])
         blob_object = open(path)
-        with open(path, "r") as f:
+        with open(path, "rb") as f:
             decompress_blob = str(zlib.decompress(f.read()))
             _, content = decompress_blob.split(" ")
             contents = content.split("\0")
