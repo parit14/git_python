@@ -29,7 +29,7 @@ def main():
                     ans.append(vs[-1])
                     ans += vals[idx+1:]
                     break
-            ans[-1].strip("'")
+            ans[-1].strip("\'")
             print(" ".join(ans))
     
     else:
