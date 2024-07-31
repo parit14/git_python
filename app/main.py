@@ -114,7 +114,7 @@ def main():
             for n in sorted(names):
                 print(n)
     elif command == "write-tree":
-        print(writeTree("/"))
+        print(writeTree("./"))
     else:
         raise RuntimeError(f"Unknown command #{command}")
 
