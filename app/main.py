@@ -48,7 +48,7 @@ def main():
             compressed_blob = zlib.compress(hash_content.digest())
             directory_path = ".git/objects" +"/" + hash_str[:2]
             os.mkdir(directory_path)
-            file_path = directory_path + "/" + hash[2:]
+            file_path = directory_path + "/" + hash_str[2:]
             with open(file_path, "w") as f:
                 f.write(compressed_blob)
     else:
