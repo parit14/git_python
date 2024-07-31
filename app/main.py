@@ -51,6 +51,7 @@ def main():
             file_path = directory_path + "/" + hash_str[2:]
             with open(file_path, "w") as f:
                 f.write(str(compressed_blob))
+            print(hash_str)
     else:
         raise RuntimeError(f"Unknown command #{command}")
 
