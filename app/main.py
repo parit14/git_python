@@ -42,7 +42,7 @@ def main():
         file_name = sys.argv[3]
         with open(file_name, "r") as f:
             content = f.read()
-            blob_header = bytes("blob " + str(len(content)) + "." + content, 'utf-8')
+            blob_header = bytes("blob " + str(len(content)) + "\x00" + content, 'utf-8')
             hash_content = hashlib.sha1(blob_header)
             hash_str = hash_content.hexdigest()
             compressed_blob = zlib.compress(blob_header)
