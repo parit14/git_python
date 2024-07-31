@@ -43,11 +43,12 @@ def main():
         with open(file_name, "r") as f:
             content = f.read()
             blob_header = bytes("blob " + str(len(content)) + "\\0" + content, 'utf-8')
-            hash_content = hashlib.sha1(blob_header).hexdigest()
+            hash_content = hashlib.sha1(blob_header)
+            hash_str = hash_content.hexdigest()
             compressed_blob = zlib.compress(hash_content)
-            directory_path = ".git/objects" +"/" + hash_content[2:]
+            directory_path = ".git/objects" +"/" + hash_str[:2]
             os.mkdir(directory_path)
-            file_path = directory_path + "/" + file_name
+            file_path = directory_path + "/" + hash[2:]
             with open(file_path, "w") as f:
                 f.write(compressed_blob)
     else:
