@@ -58,7 +58,7 @@ def main():
             with open(file_path, "wb") as f:
                 f.write(compressed_blob)
             print(hash_str)
-    elif command == "ls_tree":
+    elif command == "ls-tree":
         plummbing_flag = sys.argv[2]
         sha_id = sys.argv[3]
         path = ".git/objects/" + "".join(sha_id[:2]) + "/" + "".join(sha_id[2:])
