@@ -50,7 +50,7 @@ def main():
             os.mkdir(directory_path)
             file_path = directory_path + "/" + hash_str[2:]
             with open(file_path, "w") as f:
-                f.write(bytes(compressed_blob, 'utf-8'))
+                f.write(str(compressed_blob))
     else:
         raise RuntimeError(f"Unknown command #{command}")
 
