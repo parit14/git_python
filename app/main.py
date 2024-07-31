@@ -45,7 +45,7 @@ def main():
             blob_header = bytes("blob " + str(len(content)) + "\\0" + content, 'utf-8')
             hash_content = hashlib.sha1(blob_header)
             hash_str = hash_content.hexdigest()
-            compressed_blob = zlib.compress(hash_content.digest())
+            compressed_blob = zlib.compress(blob_header)
             directory_path = ".git/objects" +"/" + hash_str[:2]
             os.mkdir(directory_path)
             file_path = directory_path + "/" + hash_str[2:]
