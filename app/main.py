@@ -29,7 +29,7 @@ def writeTree(direc: str) -> str:
                 sha_hash+=file_sha_hash
     tree_hash = ("tree " + str(len(sha_hash)) + "\0").encode() + sha_hash
     sha = hashlib.sha1(tree_hash).hexdigest()
-    direc_path = ".git/objects" +" /" + sha[:2]
+    direc_path = ".git/objects" +"/" + sha[:2]
     os.mkdir(direc_path)
     file_path = direc_path + "/" + sha[2:]
     # print(direc_path, file_path)
