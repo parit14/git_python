@@ -3,6 +3,12 @@ import os
 import zlib
 import hashlib
 
+
+class TreeObject:
+    def __init__(self):
+        self.tree_objects = []
+        self.files = []
+
 def main():
     # print("Logs from your program will appear here!")
     
@@ -52,6 +58,14 @@ def main():
             with open(file_path, "wb") as f:
                 f.write(compressed_blob)
             print(hash_str)
+    elif command == "ls_treee":
+        plummbing_flag = sys.argv[2]
+        sha_id = sys.argv[3]
+        path = ".git/objects/" + "".join(sha_id[:2]) + "/" + "".join(sha_id[2:])
+        with open(path, "rb") as f:
+            decompressed_tree = str(zlib.decompress(f.read()))
+            vals = decompressed_tree.split("\x00")
+            print(vals)
     else:
         raise RuntimeError(f"Unknown command #{command}")
 
