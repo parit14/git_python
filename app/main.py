@@ -1,6 +1,7 @@
 import sys
 import os
 import zlib
+import hashlib
 
 def main():
     # print("Logs from your program will appear here!")
@@ -15,10 +16,10 @@ def main():
         print("Initialized git directory")
     elif command == "cat-file":
         plummbing_flag = sys.argv[2]
+        # if plummbing_flag == "p":
         blob_id = sys.argv[3]
         blob_dir = "".join(blob_id[:2])
         path = ".git/objects/" + blob_dir + "/" + "".join(blob_id[2:])
-        blob_object = open(path)
         with open(path, "rb") as f:
             decompress_blob = str(zlib.decompress(f.read()))
             vals = decompress_blob.split(" ")
@@ -36,7 +37,21 @@ def main():
                     a += letter
             ans[-1] = a
             print(" ".join(ans), end="")
-    
+    elif command == "hash-object":
+        plummbing_flag = sys.argv[2]
+        file_name = sys.argv[3]
+        with open(file_name, "r") as f:
+            content = f.read()
+            blob_header = bytes("blob " + str(len(content)) + "\x00" + content, 'utf-8')
+            hash_content = hashlib.sha1(blob_header)
+            hash_str = hash_content.hexdigest()
+            compressed_blob = zlib.compress(blob_header)
+            directory_path = ".git/objects" +"/" + hash_str[:2]
+            os.mkdir(directory_path)
+            file_path = directory_path + "/" + hash_str[2:]
+            with open(file_path, "wb") as f:
+                f.write(compressed_blob)
+            print(hash_str)
     else:
         raise RuntimeError(f"Unknown command #{command}")
 
