@@ -64,7 +64,7 @@ def main():
         path = ".git/objects/" + "".join(sha_id[:2]) + "/" + "".join(sha_id[2:])
         with open(path, "rb") as f:
             decompressed_tree = str(zlib.decompress(f.read()))
-            vals = decompressed_tree.split("\x00")
+            vals = decompressed_tree.split(" ")
             print(vals)
     else:
         raise RuntimeError(f"Unknown command #{command}")
