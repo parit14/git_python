@@ -32,6 +32,7 @@ def writeTree(direc: str) -> str:
     direc_path = direc + "/" + sha[:2]
     os.mkdir(direc_path)
     file_path = direc_path + "/" + sha[2:]
+    print(direc_path, file_path)
     with open(file_path, "wb") as f:
         f.write(zlib.compress(tree_hash))
     return sha
