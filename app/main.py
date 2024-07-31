@@ -42,7 +42,7 @@ def main():
         file_name = sys.argv[3]
         with open(file_name, "r") as f:
             content = f.read()
-            blob_header = b"blob " + str(len(content)) + "\\0" + content
+            blob_header = bytes("blob " + str(len(content)) + "\\0" + content)
             hash_content = hashlib.sha1(blob_header).hexdigest()
             compressed_blob = zlib.compress(hash_content)
             directory_path = ".git/objects" +"/" + hash_content[2:]
