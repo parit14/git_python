@@ -49,8 +49,8 @@ def main():
             directory_path = ".git/objects" +"/" + hash_str[:2]
             os.mkdir(directory_path)
             file_path = directory_path + "/" + hash_str[2:]
-            with open(file_path, "w") as f:
-                f.write(str(compressed_blob))
+            with open(file_path, "wb") as f:
+                f.write(compressed_blob)
             print(hash_str)
     else:
         raise RuntimeError(f"Unknown command #{command}")
