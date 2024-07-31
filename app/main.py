@@ -65,7 +65,12 @@ def main():
         with open(path, "rb") as f:
             decompressed_tree = str(zlib.decompress(f.read()))
             vals = decompressed_tree.split(" ")
-            print(vals)
+            names = []
+            for val in vals[2:]:
+                val_split = val.split("\\x")
+                names.append(val_split[0])
+            for n in sorted(names):
+                print(n)
     else:
         raise RuntimeError(f"Unknown command #{command}")
 
