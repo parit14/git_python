@@ -16,7 +16,7 @@ def writeTree(direc: str) -> str:
         if name != ".git":
             p = direc + "/" + name
             if os.path.isfile(p):
-                encoded_str = "10064 " + name + "\0" 
+                encoded_str = "100644 " + name + "\0" 
                 sha_hash+= (encoded_str.encode())
                 file_hash = writeBlob(p, name)
                 file_sha_hash = int.to_bytes(int(file_hash, base=16), length=20, byteorder="big")
