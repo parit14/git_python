@@ -3,7 +3,6 @@ import os
 import zlib
 import hashlib
 
-
 class TreeObject:
     def __init__(self):
         self.tree_objects = []
